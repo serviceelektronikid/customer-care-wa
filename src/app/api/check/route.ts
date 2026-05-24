@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
@@ -14,7 +15,7 @@ export async function GET() {
 
   try {
     const supabase = getSupabase();
-    const { data, error } = await supabase.from("faq").select("id").limit(1);
+    const { error } = await supabase.from("faq").select("id").limit(1);
     checks.SUPABASE_CONNECTION = error ? `❌ ${error.message}` : "✅ connected";
   } catch (e: any) {
     checks.SUPABASE_CONNECTION = `❌ ${e.message}`;
